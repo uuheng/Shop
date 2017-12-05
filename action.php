@@ -18,20 +18,20 @@ function Add(){
     //此处应该验证if.....
 
     $upinfo = uploadFile("pic", "./uploads/");
-    /*if($upinfo['error'] === false)
+    if($upinfo['error'] === false)
         die("图片上传失败：".$upinfo['info']);
     else
         $pic = $upinfo['info'];
     var_dump($pic);
-    /*imageUpdateSize('./uploads/'.$pic, 50, 50);
+    imageUpdateSize('./uploads/'.$pic, 50, 50);
     $sql = "INSERT INTO goods VALUES (NULL, '{$name}', '{$typeid}', '{$price}', '{$total}', '{$pic}', '{$note}', '{$addtime}')";
     mysqli_query($link, $sql);
 
-    // if(mysqli_insert_id($link)>0)
-        // echo "发布成功";
-    // else
-        // echo "发布失败".mysqli_error();
-    echo "<br><a href="index.php">查看商品信息</a>";*/
+    if(mysqli_insert_id($link)>0)
+        echo "发布成功";
+    else
+        echo "发布失败";
+    echo "<br><a href=\"index.php\">查看商品信息</a>";
     return;
 }
 switch($_GET['action']){
