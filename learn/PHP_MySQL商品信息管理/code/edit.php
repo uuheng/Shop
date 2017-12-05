@@ -4,27 +4,27 @@
 	</head>
 	<body>
 		<center>
-			<?php  
-				include("menu.php"); //导入导航栏  
-				//1.导入配置文件 
+			<?php
+				include("menu.php"); //导入导航栏
+				//1.导入配置文件
 					require("dbconfig.php");
 				//2. 连接数据库，并选择数据库
 					$link = @mysql_connect(HOST,USER,PASS)or die("数据库连接失败");
 					mysql_select_db(DBNAME,$link);
-				
+
 				//3. 获取要修改的商品信息
 					$sql = "select * from goods where id={$_GET['id']}";
 					$result = mysql_query($sql,$link);
-				
+
 				//4. 判断是否获取到要编辑的商品信息
 					if($result && mysql_num_rows($result)>0){
-						$shop = mysql_fetch_assoc($result);//解析出要修改的商品信息 
+						$shop = mysql_fetch_assoc($result);//解析出要修改的商品信息
 					}else{
 						die("没有找到要修改的商品信息");
 					}
-			
-			
-			
+
+
+
 			?>
 			<h3>编辑商品信息<h3>
 			<form action="action.php?action=update" enctype="multipart/form-data" method="post">
@@ -39,7 +39,7 @@
 					<td align="right">类型：</td>
 					<td>
 						<select name="typeid">
-						<?php 
+						<?php
 							include("dbconfig.php");
 							foreach($typelist as $k=>$v){
 								$sd = ($shop['typeid']==$k)?"selected":"";//是否是当前的类型
@@ -66,7 +66,7 @@
 					<td><textarea rows="5" cols="20" name="note"><?php echo $shop['note']; ?></textarea></td>
 				</tr>
 				<tr>
-					
+
 					<td colspan="2" align="center">
 						<input type="submit" value="修改"/>&nbsp;&nbsp;&nbsp;
 						<input type="reset" value="重置"/>

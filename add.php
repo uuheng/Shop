@@ -5,8 +5,9 @@
     </head>
     <body>
         <center>
+            <?php include("menu.php"); ?>
             <h3>商品发布信息</h3>
-            <form action="action.php?action=add" enctype="multipart/form-data" method="post">
+            <form action="./action.php?action=add" enctype="multipart/form-data" method="post">
             <table border="0" width="400">
                 <tr>
                     <td align="right">名称：</td>
