@@ -55,4 +55,19 @@ function Add(){
     return;
 }
 
+function Del(){
+	$sql = "delete from goods where id='{$_GET['id']}'";
+	echo $sql;
+	$link = mysqli_connect(HOST, USER, PASS, DBNAME) or die("数据库连接失败");
+	mysqli_query($link, $sql);
+	if(mysqli_affected_rows($link)>0){
+		unlink("./uploads/".$_GET['picname']);
+	}
+	else {
+		echo "删除失败";
+	}
+	header("Loaction: index.php");
+	return;
+}
+
 ?>
