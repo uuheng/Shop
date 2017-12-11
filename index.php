@@ -11,7 +11,9 @@
     <tr>
         <th>编号</th>
         <th>名称</th>
+        <th>类型</th>
         <th>图片</th>
+        <th>描述</th>
         <th>单价</th>
         <th>库存</th>
         <th>添加时间</th>
@@ -30,7 +32,9 @@
             echo "<tr>";
             echo "<td>{$row['id']}</td>";
             echo "<td>{$row['name']}</td>";
-            echo "<td><img src='./uploads/{$row['pic']}'/></td>";
+            echo "<td>{$row['typeid']}</td>";
+            echo "<td><img src='./uploads/{$row['pic']}' width='150px' height='100px'/></td>";
+            echo "<td>{$row['note']}</td>";
             echo "<td>{$row['price']}</td>";
             echo "<td>{$row['total']}</td>";
             echo "<td>".date("Y-m-d H:i:s", $row['addtime'])."</td>";

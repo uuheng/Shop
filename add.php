@@ -15,15 +15,7 @@
                 </tr>
                 <tr>
                     <td align="right">类型：</td>
-                    <td>
-                        <select name="typeid">
-                            <?php
-                                include('dbconfig.php');
-                                foreach($typelist as $key=>$val)
-                                    echo "<option value='{$key}'>{$val}</option>";
-                            ?>
-                        </select>
-                    </td>
+                    <td><input type="text" name="typeid"/></td>
                 </tr>
                 <tr>
                     <td align="right">单价：</td>

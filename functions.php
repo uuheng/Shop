@@ -44,6 +44,7 @@ function Add(){
     $pic = uploadFile();
     // imageUpdateSize('./uploads/'.$pic, 50, 50);
     $sql = "INSERT INTO goods VALUES (NULL, '{$name}', '{$typeid}', '{$price}', '{$total}', '{$pic}', '{$note}', '{$addtime}')";
+	echo $sql;
     mysqli_query($link, $sql);
 
     if(mysqli_insert_id($link)>0)
@@ -51,7 +52,7 @@ function Add(){
     else
         echo "发布失败";
     echo "<br><a href=\"index.php\">查看商品信息</a>";
-    mysqli_close($link);
+	mysqli_close($link);
     return;
 }
 
@@ -66,8 +67,28 @@ function Del(){
 	else {
 		echo "删除失败";
 	}
+	mysqli_close($link);
 	header("Loaction: index.php");
 	return;
 }
 
+function Update(){
+	$id = $_POST['id'];
+	$name = $_POST['name'];
+    $typeid = $_POST['typeid'];
+    $price = $_POST['price'];
+    $total = $_POST['total'];
+    $note = $_POST['note'];
+    $addtime = time();
+	$pic = $_POST['pic_old'];
+	if($_FILES['pic']['error']!=4){
+		unlink("uploads/".$pic);
+		$pic = uploadFile();
+	}
+	$link = mysqli_connect(HOST, USER, PASS, DBNAME) or die("连接失败");
+	$sql = "UPDATE goods set name='{$name}', typeid='{$typeid}', price='{$price}', total='{$total}', pic='{$pic}', note='{$note}', addtime='{$addtime}' WHERE id='{$id}'";
+	mysqli_query($link, $sql);
+	echo "<a href='index.php'>查看首页</a>";
+	mysqli_close($link);
+}
 ?>
